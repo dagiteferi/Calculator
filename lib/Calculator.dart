@@ -35,6 +35,39 @@ class _CalculatorState extends State<Calculator> {
         ),
         backgroundColor: Colors.black,
       ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10.0),
+            alignment: Alignment.centerRight,
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(color: Colors.red, width: 3.0),
+                //left: BorderSide(color: Colors.black, width: 3.0),
+                right: BorderSide(color: Colors.red, width: 3.0),
+                bottom: BorderSide(color: Colors.black, width: 3.0),
+                //bottom: BorderSide(color: Colors.red, width: 3.0),
+              ),
+
+              // child: Text( _input,
+              //  style: TextStyle(
+              //   fontSize: 48.0,
+              //   fontWeight: FontWeight.bold,
+              //   ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(10.0),
+              alignment: Alignment.centerRight,
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.black, width: 3.0),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
