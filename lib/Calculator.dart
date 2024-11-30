@@ -8,6 +8,8 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
+  String _input = '0'; // Define the input variable
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,17 +46,9 @@ class _CalculatorState extends State<Calculator> {
             decoration: const BoxDecoration(
               border: Border(
                 top: BorderSide(color: Colors.red, width: 3.0),
-                //left: BorderSide(color: Colors.black, width: 3.0),
                 right: BorderSide(color: Colors.red, width: 3.0),
                 bottom: BorderSide(color: Colors.black, width: 3.0),
-                //bottom: BorderSide(color: Colors.red, width: 3.0),
               ),
-
-              // child: Text( _input,
-              //  style: TextStyle(
-              //   fontSize: 48.0,
-              //   fontWeight: FontWeight.bold,
-              //   ),
             ),
             child: Container(
               padding: const EdgeInsets.all(10.0),
@@ -64,10 +58,52 @@ class _CalculatorState extends State<Calculator> {
                   bottom: BorderSide(color: Colors.black, width: 3.0),
                 ),
               ),
+              child: Text(
+                _input,
+                style: const TextStyle(
+                  fontSize: 48.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 4,
+              children: <Widget>[
+                _buildButton('7', Colors.grey, () {/* Button logic here */}),
+                _buildButton('8', Colors.grey, () {/* Button logic here */}),
+                _buildButton('9', Colors.grey, () {/* Button logic here */}),
+                _buildButton('/', Colors.orange, () {/* Button logic here */}),
+                _buildButton('4', Colors.grey, () {/* Button logic here */}),
+                _buildButton('5', Colors.grey, () {/* Button logic here */}),
+                _buildButton('6', Colors.grey, () {/* Button logic here */}),
+                _buildButton('*', Colors.orange, () {/* Button logic here */}),
+                _buildButton('1', Colors.grey, () {/* Button logic here */}),
+                _buildButton('2', Colors.grey, () {/* Button logic here */}),
+                _buildButton('3', Colors.grey, () {/* Button logic here */}),
+                _buildButton('-', Colors.orange, () {/* Button logic here */}),
+                _buildButton('0', Colors.grey, () {/* Button logic here */}),
+                _buildButton('.', Colors.grey, () {/* Button logic here */}),
+                _buildButton('=', Colors.orange, () {/* Button logic here */}),
+                _buildButton('+', Colors.orange, () {/* Button logic here */}),
+              ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildButton(String text, Color color, VoidCallback onPressed) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        padding: const EdgeInsets.all(20.0),
+        textStyle: const TextStyle(fontSize: 24),
+      ),
+      onPressed: onPressed,
+      child: Text(text),
     );
   }
 }
