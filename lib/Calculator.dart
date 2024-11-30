@@ -18,13 +18,13 @@ class _CalculatorState extends State<Calculator> {
             fontSize: 28.0,
             fontWeight: FontWeight.bold,
             foreground: Paint()
-              ..shader = LinearGradient(
+              ..shader = const LinearGradient(
                 colors: <Color>[
                   Color(0xffDA4453),
                   Color(0xff89216B),
                 ],
-              ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
-            shadows: <Shadow>[
+              ).createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0)),
+            shadows: const <Shadow>[
               Shadow(
                 offset: Offset(2.0, 2.0),
                 blurRadius: 3.0,
