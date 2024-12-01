@@ -82,9 +82,9 @@ class _CalculatorState extends State<Calculator> {
                   top: BorderSide(
                       color: Colors.pink, width: 3.0), // Adjusted border color
                   right: BorderSide(
-                      color: Colors.pink, width: 3.0), // Adjusted border color
+                      color: Colors.pink, width: 1.0), // Adjusted border color
                   bottom: BorderSide(
-                      color: Colors.pink, width: 3.0), // Adjusted border color
+                      color: Colors.black, width: 1.0), // Adjusted border color
                 ),
               ),
               child: Container(
@@ -93,7 +93,7 @@ class _CalculatorState extends State<Calculator> {
                 decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Colors.black, width: 0.1), // Thinner bottom line
+                        color: Colors.pink, width: 1.0), // Thinner bottom line
                   ),
                 ),
                 child: Text(
