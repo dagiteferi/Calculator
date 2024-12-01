@@ -142,7 +142,8 @@ class _CalculatorState extends State<Calculator> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: buttonColor,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius:
+                                BorderRadius.circular(50), // Adjusted radius
                           ),
                         ),
                         child: Text(
@@ -166,7 +167,8 @@ class _CalculatorState extends State<Calculator> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius:
+                                  BorderRadius.circular(50), // Adjusted radius
                             ),
                           ),
                           child: const Text(
@@ -182,7 +184,8 @@ class _CalculatorState extends State<Calculator> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.orange,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(90),
+                              borderRadius:
+                                  BorderRadius.circular(50), // Adjusted radius
                             ),
                           ),
                           child: const Text(
