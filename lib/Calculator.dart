@@ -79,9 +79,12 @@ class _CalculatorState extends State<Calculator> {
               alignment: Alignment.centerRight,
               decoration: const BoxDecoration(
                 border: Border(
-                  top: BorderSide(color: Colors.red, width: 3.0),
-                  right: BorderSide(color: Colors.red, width: 3.0),
-                  bottom: BorderSide(color: Colors.red, width: 3.0),
+                  top: BorderSide(
+                      color: Colors.pink, width: 3.0), // Adjusted border color
+                  right: BorderSide(
+                      color: Colors.pink, width: 3.0), // Adjusted border color
+                  bottom: BorderSide(
+                      color: Colors.pink, width: 3.0), // Adjusted border color
                 ),
               ),
               child: Container(
@@ -89,7 +92,8 @@ class _CalculatorState extends State<Calculator> {
                 alignment: Alignment.centerRight,
                 decoration: const BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(color: Colors.black, width: 3.0),
+                    bottom: BorderSide(
+                        color: Colors.black, width: 0.1), // Thinner bottom line
                   ),
                 ),
                 child: Text(
@@ -97,110 +101,132 @@ class _CalculatorState extends State<Calculator> {
                   style: const TextStyle(
                     fontSize: 48.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.red, // Change text color to red
+                    color: Colors.red,
                   ),
                 ),
               ),
             ),
           ),
-          // Button grid
+          // Button grid with light blue background color
           Expanded(
             flex: 5,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: GridView.count(
-                    crossAxisCount: 4,
-                    padding: const EdgeInsets.all(6.0),
-                    mainAxisSpacing: 1.0, // Adjusted spacing
-                    crossAxisSpacing: 1.0, // Adjusted spacing
-                    children: [
-                      '1',
-                      '2',
-                      '3',
-                      '/',
-                      '4',
-                      '5',
-                      '6',
-                      'X',
-                      '7',
-                      '8',
-                      '9',
-                      '-',
-                      '.',
-                      '0',
-                      '00',
-                      '+'
-                    ].map((text) {
-                      Color? buttonColor = Colors.lightBlue[50];
-                      if (['+', '-', 'X', '/', '=', 'CLEAR'].contains(text)) {
-                        buttonColor = Colors.orange;
-                      }
-                      return ElevatedButton(
-                        onPressed: () => _onButtonPressed(text),
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.all(16.0), // Adjusted padding
-                          backgroundColor: buttonColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(40), // Adjusted radius
-                          ),
-                        ),
-                        child: Text(
-                          text,
-                          style:
-                              const TextStyle(fontSize: 24, color: Colors.blue),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-                // Bottom row with CLEAR and = buttons
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: ElevatedButton(
-                          onPressed: () => _onButtonPressed('CLEAR'),
+            child: Container(
+              color: Colors.lightBlue[100], // Set background color
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: GridView.count(
+                      crossAxisCount: 4,
+                      padding: const EdgeInsets.all(6.0),
+                      mainAxisSpacing: 2.0, // Adjusted spacing
+                      crossAxisSpacing: 2.0, // Adjusted spacing
+                      children: [
+                        '1',
+                        '2',
+                        '3',
+                        '/',
+                        '4',
+                        '5',
+                        '6',
+                        'X',
+                        '7',
+                        '8',
+                        '9',
+                        '-',
+                        '.',
+                        '0',
+                        '00',
+                        '+'
+                      ].map((text) {
+                        return ElevatedButton(
+                          onPressed: () => _onButtonPressed(text),
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.all(16.0), // Adjusted padding
-                            backgroundColor: Colors.orange,
+                            backgroundColor:
+                                Colors.lightBlue[100], // Light blue background
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(60), // Adjusted radius
+                                  BorderRadius.circular(35), // Adjusted radius
+                              side: BorderSide(
+                                  color: const Color.fromARGB(255, 95, 125,
+                                      150), // Adjusted border color
+                                  width: 0.1), // Thinner border color
                             ),
                           ),
-                          child: const Text(
-                            'CLEAR',
-                            style: TextStyle(fontSize: 24, color: Colors.blue),
+                          child: Text(
+                            text,
+                            style: const TextStyle(
+                                fontSize: 24,
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold), // Bold text
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: ElevatedButton(
-                          onPressed: () => _onButtonPressed('='),
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.all(16.0), // Adjusted padding
-                            backgroundColor: Colors.orange,
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(60), // Adjusted radius
-                            ),
-                          ),
-                          child: const Text(
-                            '=',
-                            style: TextStyle(fontSize: 24, color: Colors.blue),
-                          ),
-                        ),
-                      ),
-                    ],
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ),
-              ],
+                  // Bottom row with CLEAR and = buttons
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: ElevatedButton(
+                            onPressed: () => _onButtonPressed('CLEAR'),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(16.0), // Adjusted padding
+                              backgroundColor: Colors
+                                  .lightBlue[100], // Light blue background
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    40), // Adjusted radius
+                                side: BorderSide(
+                                    color: const Color.fromARGB(255, 95, 125,
+                                        150), // Adjusted border color
+                                    width: 0.1), // Thinner border color
+                              ),
+                            ),
+                            child: const Text(
+                              'CLEAR',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold), // Bold text
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: ElevatedButton(
+                            onPressed: () => _onButtonPressed('='),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(16.0), // Adjusted padding
+                              backgroundColor: Colors
+                                  .lightBlue[100], // Light blue background
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    40), // Adjusted radius
+                                side: BorderSide(
+                                    color: const Color.fromARGB(255, 95, 125,
+                                        150), // Adjusted border color
+                                    width: 0.1), // Thinner border color
+                              ),
+                            ),
+                            child: const Text(
+                              '=',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold), // Bold text
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
