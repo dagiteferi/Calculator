@@ -113,8 +113,8 @@ class _CalculatorState extends State<Calculator> {
                   child: GridView.count(
                     crossAxisCount: 4,
                     padding: const EdgeInsets.all(8.0),
-                    mainAxisSpacing: 4.0, // Adjusted spacing
-                    crossAxisSpacing: 4.0, // Adjusted spacing
+                    mainAxisSpacing: 2.0, // Adjusted spacing
+                    crossAxisSpacing: 2.0, // Adjusted spacing
                     children: [
                       '1',
                       '2',
@@ -144,7 +144,7 @@ class _CalculatorState extends State<Calculator> {
                           backgroundColor: buttonColor,
                           shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.circular(50), // Adjusted radius
+                                BorderRadius.circular(40), // Adjusted radius
                           ),
                         ),
                         child: Text(
