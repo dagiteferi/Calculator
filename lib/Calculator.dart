@@ -113,8 +113,8 @@ class _CalculatorState extends State<Calculator> {
                   child: GridView.count(
                     crossAxisCount: 4,
                     padding: const EdgeInsets.all(8.0),
-                    mainAxisSpacing: 8.0,
-                    crossAxisSpacing: 8.0,
+                    mainAxisSpacing: 4.0, // Adjusted spacing
+                    crossAxisSpacing: 4.0, // Adjusted spacing
                     children: [
                       '1',
                       '2',
@@ -140,6 +140,7 @@ class _CalculatorState extends State<Calculator> {
                       return ElevatedButton(
                         onPressed: () => _onButtonPressed(text),
                         style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(16.0), // Adjusted padding
                           backgroundColor: buttonColor,
                           shape: RoundedRectangleBorder(
                             borderRadius:
@@ -165,10 +166,11 @@ class _CalculatorState extends State<Calculator> {
                         child: ElevatedButton(
                           onPressed: () => _onButtonPressed('CLEAR'),
                           style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(16.0), // Adjusted padding
                             backgroundColor: Colors.orange,
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(50), // Adjusted radius
+                                  BorderRadius.circular(40), // Adjusted radius
                             ),
                           ),
                           child: const Text(
@@ -182,10 +184,11 @@ class _CalculatorState extends State<Calculator> {
                         child: ElevatedButton(
                           onPressed: () => _onButtonPressed('='),
                           style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.all(16.0), // Adjusted padding
                             backgroundColor: Colors.orange,
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(50), // Adjusted radius
+                                  BorderRadius.circular(40), // Adjusted radius
                             ),
                           ),
                           child: const Text(
