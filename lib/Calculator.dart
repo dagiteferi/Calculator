@@ -9,6 +9,33 @@ class Calculator extends StatefulWidget {
 
 class _CalculatorState extends State<Calculator> {
   String _input = '0'; // Define the input variable
+  String _result = '';
+  void _onButtonPressed(String buttonText) {
+    setState(() {
+      if (buttonText == 'CLEAR') {
+        _input = '0';
+      } else if (buttonText == '=') {
+        try {
+          // Evaluate the expression (using a simple approach)
+          _result = _evaluateExpression(_input);
+        } catch (e) {
+          _result = 'Error';
+        }
+        _input = _result;
+      } else {
+        if (_input == '0') {
+          _input = buttonText;
+        } else {
+          _input += buttonText;
+        }
+      }
+    });
+  }
+
+  String _evaluateExpression(String expression) {
+    // This is a placeholder for evaluating the expression. // You might want to use a proper expression parser for complex calculations. // For simplicity, we're just returning the expression here.
+    return expression;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,61 +104,33 @@ class _CalculatorState extends State<Calculator> {
               mainAxisSpacing: 8.0,
               crossAxisSpacing: 8.0,
               children: <Widget>[
-                _buildButton('1', Colors.grey, () {
-                  /* Button logic here */
-                }),
-                _buildButton('2', Colors.grey, () {
-                  /* Button logic here */
-                }),
-                _buildButton('3', Colors.grey, () {/* Button logic here */}),
-                _buildButton('/', Colors.orange, () {/* Button logic here */}),
-                _buildButton('4', Colors.grey, () {/* Button logic here */}),
-                _buildButton('5', Colors.grey, () {/* Button logic here */}),
-                _buildButton('6', Colors.grey, () {/* Button logic here */}),
-                _buildButton('X', Colors.orange, () {/* Button logic here */}),
-                _buildButton('7', Colors.grey, () {/* Button logic here */}),
-                _buildButton('8', Colors.grey, () {/* Button logic here */}),
-                _buildButton('9', Colors.grey, () {/* Button logic here */}),
-                _buildButton('-', Colors.orange, () {/* Button logic here */}),
-                _buildButton('.', Colors.grey, () {/* Button logic here */}),
-                _buildButton('0', Colors.grey, () {/* Button logic here */}),
-                _buildButton('00', Colors.orange, () {/* Button logic here */}),
-                _buildButton('+', Colors.orange, () {/* Button logic here */}),
-                // Full-width buttons
+                _buildButton('1', Colors.grey, () => _onButtonPressed('1')),
+                _buildButton('2', Colors.grey, () => _onButtonPressed('2')),
+                _buildButton('3', Colors.grey, () => _onButtonPressed('3')),
+                _buildButton('/', Colors.orange, () => _onButtonPressed('/')),
+                _buildButton('4', Colors.grey, () => _onButtonPressed('4')),
+                _buildButton('5', Colors.grey, () => _onButtonPressed('5')),
+                _buildButton('6', Colors.grey, () => _onButtonPressed('6')),
+                _buildButton('X', Colors.orange, () => _onButtonPressed('X')),
+                _buildButton('7', Colors.grey, () => _onButtonPressed('7')),
+                _buildButton('8', Colors.grey, () => _onButtonPressed('8')),
+                _buildButton('9', Colors.grey, () => _onButtonPressed('9')),
+                _buildButton('-', Colors.orange, () => _onButtonPressed('-')),
+                _buildButton('.', Colors.grey, () => _onButtonPressed('.')),
+                _buildButton('0', Colors.grey, () => _onButtonPressed('0')),
+                _buildButton('00', Colors.orange, () => _onButtonPressed('00')),
+                _buildButton('+', Colors.orange, () => _onButtonPressed('+')),
                 GridTile(
-                  child: _buildButton('CLEAR', Colors.grey, () {
-                    /* Button logic here */
-                  }),
-                  footer: Container(height: 1.0, color: Colors.transparent),
-                  header: Container(
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: _buildButton('CLEAR', Colors.grey, () {
-                            // Button logic here
-                          }),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                GridTile(
-                  child: _buildButton('=', Colors.orange, () {
-                    /* Button logic here */
-                  }),
-                  footer: Container(height: 1.0, color: Colors.transparent),
-                  header: Container(
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: _buildButton('=', Colors.orange, () {
-                            // Button lssogic her
-                          }),
-                        ),
-                      ],
-                    ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _buildButton('CLEAR', Colors.grey,
+                            () => _onButtonPressed('CLEAR')),
+                      ),
+                      Expanded(
+                          child: _buildButton(
+                              '=', Colors.orange, () => _onButtonPressed('='))),
+                    ],
                   ),
                 ),
               ],
@@ -152,7 +151,7 @@ class _CalculatorState extends State<Calculator> {
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () => _onButtonPressed(text),
       child: Text(text, style: const TextStyle(color: Colors.blue)),
     );
   }
