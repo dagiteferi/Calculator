@@ -97,6 +97,7 @@ class _CalculatorState extends State<Calculator> {
                   style: const TextStyle(
                     fontSize: 48.0,
                     fontWeight: FontWeight.bold,
+                    color: Colors.red, // Change text color to red
                   ),
                 ),
               ),
