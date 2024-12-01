@@ -1,4 +1,5 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
+import 'package:expressions/expressions.dart';
 
 class Calculator extends StatefulWidget {
   const Calculator({super.key});
@@ -9,66 +10,35 @@ class Calculator extends StatefulWidget {
 
 class _CalculatorState extends State<Calculator> {
   String _input = '';
-  String _result = '0';
+  String _result = '';
 
   void _onButtonPressed(String buttonText) {
     setState(() {
       if (buttonText == 'CLEAR') {
         _input = '';
-        _result = '0';
+        _result = '';
       } else if (buttonText == '=') {
-        String evaluatedResult = _evaluateExpression(_input);
-        _result = evaluatedResult;
-        _input = '';
+        _evaluateExpression();
       } else {
         _input += buttonText;
-        _result = _input;
       }
     });
   }
 
-  String _evaluateExpression(String expression) {
-    expression = expression.replaceAll('X', '*');
-    if (RegExp(r'[\+\-\*\/]$').hasMatch(expression)) {
-      return 'Error';
+  void _evaluateExpression() {
+    try {
+      Expression expression = Expression.parse(_input.replaceAll('X', '*'));
+      final evaluator = const ExpressionEvaluator();
+      var context = <String, dynamic>{};
+      num result = evaluator.eval(expression, context);
+      setState(() {
+        _result = result.toString();
+      });
+    } catch (e) {
+      setState(() {
+        _result = 'Error';
+      });
     }
-
-    List<String> tokens = expression
-        .split(RegExp(r'([\+\-\*\/])'))
-        .where((s) => s.isNotEmpty)
-        .toList();
-    if (tokens.length < 3 && tokens.length != 1) {
-      return 'Error';
-    }
-
-    double result = double.parse(tokens[0]);
-
-    for (int i = 1; i < tokens.length; i += 2) {
-      String operator = tokens[i];
-      double nextOperand = double.parse(tokens[i + 1]);
-
-      switch (operator) {
-        case '+':
-          result += nextOperand;
-          break;
-        case '-':
-          result -= nextOperand;
-          break;
-        case '*':
-          result *= nextOperand;
-          break;
-        case '/':
-          if (nextOperand == 0) {
-            return 'Error';
-          }
-          result /= nextOperand;
-          break;
-        default:
-          return 'Error';
-      }
-    }
-
-    return result.toString();
   }
 
   @override
@@ -111,7 +81,7 @@ class _CalculatorState extends State<Calculator> {
                 border: Border(
                   top: BorderSide(color: Colors.red, width: 3.0),
                   right: BorderSide(color: Colors.red, width: 3.0),
-                  bottom: BorderSide(color: Colors.black, width: 3.0),
+                  bottom: BorderSide(color: Colors.red, width: 3.0),
                 ),
               ),
               child: Container(
@@ -119,11 +89,11 @@ class _CalculatorState extends State<Calculator> {
                 alignment: Alignment.centerRight,
                 decoration: const BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(color: Colors.red, width: 4.0),
+                    bottom: BorderSide(color: Colors.black, width: 3.0),
                   ),
                 ),
                 child: Text(
-                  _result,
+                  _result.isEmpty ? _input : _result,
                   style: const TextStyle(
                     fontSize: 48.0,
                     fontWeight: FontWeight.bold,
@@ -157,24 +127,26 @@ class _CalculatorState extends State<Calculator> {
                 '0',
                 '00',
                 '+',
-                'CLEAR',
+                '    CLEAR   ',
                 '='
               ].map((text) {
                 Color? buttonColor = Colors.lightBlue[50];
                 if (['+', '-', 'X', '/', '=', 'CLEAR'].contains(text)) {
                   buttonColor = Colors.orange;
                 }
-                return ElevatedButton(
-                  onPressed: () => _onButtonPressed(text),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: buttonColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                return GridTile(
+                  child: ElevatedButton(
+                    onPressed: () => _onButtonPressed(text),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: buttonColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    text,
-                    style: const TextStyle(fontSize: 24, color: Colors.blue),
+                    child: Text(
+                      text,
+                      style: const TextStyle(fontSize: 24, color: Colors.blue),
+                    ),
                   ),
                 );
               }).toList(),
