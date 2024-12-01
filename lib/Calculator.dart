@@ -38,55 +38,102 @@ class _CalculatorState extends State<Calculator> {
         backgroundColor: Colors.black,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Container(
-            padding: const EdgeInsets.all(10.0),
-            alignment: Alignment.centerRight,
-            decoration: const BoxDecoration(
-              border: Border(
-                top: BorderSide(color: Colors.red, width: 3.0),
-                right: BorderSide(color: Colors.red, width: 3.0),
-                bottom: BorderSide(color: Colors.black, width: 3.0),
-              ),
-            ),
+          Expanded(
+            flex: 2,
             child: Container(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(16.0),
               alignment: Alignment.centerRight,
               decoration: const BoxDecoration(
                 border: Border(
+                  top: BorderSide(color: Colors.red, width: 3.0),
+                  right: BorderSide(color: Colors.red, width: 3.0),
                   bottom: BorderSide(color: Colors.black, width: 3.0),
                 ),
               ),
-              child: Text(
-                _input,
-                style: const TextStyle(
-                  fontSize: 48.0,
-                  fontWeight: FontWeight.bold,
+              child: Container(
+                padding: const EdgeInsets.all(10.0),
+                alignment: Alignment.centerRight,
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: Colors.red, width: 4.0),
+                  ),
+                ),
+                child: Text(
+                  _input,
+                  style: const TextStyle(
+                    fontSize: 48.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
           Expanded(
+            flex: 5,
             child: GridView.count(
               crossAxisCount: 4,
+              padding: const EdgeInsets.all(8.0),
+              mainAxisSpacing: 8.0,
+              crossAxisSpacing: 8.0,
               children: <Widget>[
-                _buildButton('7', Colors.grey, () {/* Button logic here */}),
-                _buildButton('8', Colors.grey, () {/* Button logic here */}),
-                _buildButton('9', Colors.grey, () {/* Button logic here */}),
+                _buildButton('1', Colors.grey, () {
+                  /* Button logic here */
+                }),
+                _buildButton('2', Colors.grey, () {
+                  /* Button logic here */
+                }),
+                _buildButton('3', Colors.grey, () {/* Button logic here */}),
                 _buildButton('/', Colors.orange, () {/* Button logic here */}),
                 _buildButton('4', Colors.grey, () {/* Button logic here */}),
                 _buildButton('5', Colors.grey, () {/* Button logic here */}),
                 _buildButton('6', Colors.grey, () {/* Button logic here */}),
-                _buildButton('*', Colors.orange, () {/* Button logic here */}),
-                _buildButton('1', Colors.grey, () {/* Button logic here */}),
-                _buildButton('2', Colors.grey, () {/* Button logic here */}),
-                _buildButton('3', Colors.grey, () {/* Button logic here */}),
+                _buildButton('X', Colors.orange, () {/* Button logic here */}),
+                _buildButton('7', Colors.grey, () {/* Button logic here */}),
+                _buildButton('8', Colors.grey, () {/* Button logic here */}),
+                _buildButton('9', Colors.grey, () {/* Button logic here */}),
                 _buildButton('-', Colors.orange, () {/* Button logic here */}),
-                _buildButton('0', Colors.grey, () {/* Button logic here */}),
                 _buildButton('.', Colors.grey, () {/* Button logic here */}),
-                _buildButton('=', Colors.orange, () {/* Button logic here */}),
+                _buildButton('0', Colors.grey, () {/* Button logic here */}),
+                _buildButton('00', Colors.orange, () {/* Button logic here */}),
                 _buildButton('+', Colors.orange, () {/* Button logic here */}),
+                // Full-width buttons
+                GridTile(
+                  child: _buildButton('CLEAR', Colors.grey, () {
+                    /* Button logic here */
+                  }),
+                  footer: Container(height: 1.0, color: Colors.transparent),
+                  header: Container(
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: _buildButton('CLEAR', Colors.grey, () {
+                            // Button logic here
+                          }),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GridTile(
+                  child: _buildButton('=', Colors.orange, () {
+                    /* Button logic here */
+                  }),
+                  footer: Container(height: 1.0, color: Colors.transparent),
+                  header: Container(
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: _buildButton('=', Colors.orange, () {
+                            // Button lssogic her
+                          }),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -101,9 +148,12 @@ class _CalculatorState extends State<Calculator> {
         backgroundColor: color,
         padding: const EdgeInsets.all(20.0),
         textStyle: const TextStyle(fontSize: 24),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
       ),
       onPressed: onPressed,
-      child: Text(text),
+      child: Text(text, style: const TextStyle(color: Colors.blue)),
     );
   }
 }
