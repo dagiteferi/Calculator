@@ -105,51 +105,95 @@ class _CalculatorState extends State<Calculator> {
           // Button grid
           Expanded(
             flex: 5,
-            child: GridView.count(
-              crossAxisCount: 4,
-              padding: const EdgeInsets.all(8.0),
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
+            child: Column(
               children: [
-                '1',
-                '2',
-                '3',
-                '/',
-                '4',
-                '5',
-                '6',
-                'X',
-                '7',
-                '8',
-                '9',
-                '-',
-                '.',
-                '0',
-                '00',
-                '+',
-                '    CLEAR   ',
-                '='
-              ].map((text) {
-                Color? buttonColor = Colors.lightBlue[50];
-                if (['+', '-', 'X', '/', '=', 'CLEAR'].contains(text)) {
-                  buttonColor = Colors.orange;
-                }
-                return GridTile(
-                  child: ElevatedButton(
-                    onPressed: () => _onButtonPressed(text),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: buttonColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(
-                      text,
-                      style: const TextStyle(fontSize: 24, color: Colors.blue),
-                    ),
+                Expanded(
+                  flex: 4,
+                  child: GridView.count(
+                    crossAxisCount: 4,
+                    padding: const EdgeInsets.all(8.0),
+                    mainAxisSpacing: 8.0,
+                    crossAxisSpacing: 8.0,
+                    children: [
+                      '1',
+                      '2',
+                      '3',
+                      '/',
+                      '4',
+                      '5',
+                      '6',
+                      'X',
+                      '7',
+                      '8',
+                      '9',
+                      '-',
+                      '.',
+                      '0',
+                      '00',
+                      '+'
+                    ].map((text) {
+                      Color? buttonColor = Colors.lightBlue[50];
+                      if (['+', '-', 'X', '/', '=', 'CLEAR'].contains(text)) {
+                        buttonColor = Colors.orange;
+                      }
+                      return ElevatedButton(
+                        onPressed: () => _onButtonPressed(text),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: Text(
+                          text,
+                          style:
+                              const TextStyle(fontSize: 24, color: Colors.blue),
+                        ),
+                      );
+                    }).toList(),
                   ),
-                );
-              }).toList(),
+                ),
+                // Bottom row with CLEAR and = buttons
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () => _onButtonPressed('CLEAR'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orange,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Text(
+                            'CLEAR',
+                            style: TextStyle(fontSize: 24, color: Colors.blue),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () => _onButtonPressed('='),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.orange,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(90),
+                            ),
+                          ),
+                          child: const Text(
+                            '=',
+                            style: TextStyle(fontSize: 24, color: Colors.blue),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
