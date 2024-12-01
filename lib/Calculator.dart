@@ -112,9 +112,9 @@ class _CalculatorState extends State<Calculator> {
                   flex: 4,
                   child: GridView.count(
                     crossAxisCount: 4,
-                    padding: const EdgeInsets.all(8.0),
-                    mainAxisSpacing: 2.0, // Adjusted spacing
-                    crossAxisSpacing: 2.0, // Adjusted spacing
+                    padding: const EdgeInsets.all(6.0),
+                    mainAxisSpacing: 1.0, // Adjusted spacing
+                    crossAxisSpacing: 1.0, // Adjusted spacing
                     children: [
                       '1',
                       '2',
@@ -170,7 +170,7 @@ class _CalculatorState extends State<Calculator> {
                             backgroundColor: Colors.orange,
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(40), // Adjusted radius
+                                  BorderRadius.circular(60), // Adjusted radius
                             ),
                           ),
                           child: const Text(
@@ -188,7 +188,7 @@ class _CalculatorState extends State<Calculator> {
                             backgroundColor: Colors.orange,
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(40), // Adjusted radius
+                                  BorderRadius.circular(60), // Adjusted radius
                             ),
                           ),
                           child: const Text(
